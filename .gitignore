@@ -21,3 +21,6 @@ data.json
 # project
 build
 sync-plugin.sh
+
+# obsidian test vault
+.test-vault
