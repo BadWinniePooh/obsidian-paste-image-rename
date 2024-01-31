@@ -1,4 +1,4 @@
-name: Build obsidian plugin
+name: Release obsidian plugin
 
 on:
     push:
@@ -15,15 +15,15 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            - uses: pnpm/action-setup@v2
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   version: latest
             - name: Build
               id: build
               run: |
-                  pnpm install
-                  pnpm run build --if-present
+                  npm install
+                  npm run build --if-present
                   mkdir ${{ env.PLUGIN_NAME }}
                   cp main.js styles.css manifest.json ${{ env.PLUGIN_NAME }}
                   zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
