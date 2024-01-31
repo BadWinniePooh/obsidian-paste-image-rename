@@ -153,7 +153,7 @@ export default class PasteImageRenamePlugin extends Plugin {
 		let result = '';
 
 		if(this.settings.templateSuffix){
-			var position = input.length - 2
+			const position = input.length - 2
 			result = [input.slice(0,position), "|", this.settings.templateSuffix, input.slice(position)].join('')
 		}
 
@@ -421,19 +421,6 @@ function isPastedImage(file: TAbstractFile): boolean {
 function isMarkdownFile(file: TAbstractFile): boolean {
 	if (file instanceof TFile) {
 		if (file.extension === 'md') {
-			return true
-		}
-	}
-	return false
-}
-
-const IMAGE_EXTS = [
-	'jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg',
-]
-
-function isImage(file: TAbstractFile): boolean {
-	if (file instanceof TFile) {
-		if (IMAGE_EXTS.contains(file.extension.toLowerCase())) {
 			return true
 		}
 	}
