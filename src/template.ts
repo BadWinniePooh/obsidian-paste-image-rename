@@ -11,7 +11,7 @@ const replaceDateVar = (s: string, date: moment.Moment): string => {
 
 const replaceFrontmatterVar = (
 	s: string,
-	frontmatter?: FrontMatterCache
+	frontmatter?: FrontMatterCache,
 ): string => {
 	if (!frontmatter) return s;
 	const m = frontmatterTmplRegex.exec(s);
@@ -29,7 +29,7 @@ interface TemplateData {
 export const renderTemplate = (
 	tmpl: string,
 	data: TemplateData,
-	frontmatter?: FrontMatterCache
+	frontmatter?: FrontMatterCache,
 ) => {
 	const now = window.moment();
 	let text = tmpl;

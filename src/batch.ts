@@ -31,7 +31,7 @@ export class ImageBatchRenameModal extends Modal {
 		app: App,
 		activeFile: TFile,
 		renameFunc: renameFuncType,
-		onClose: () => void
+		onClose: () => void,
 	) {
 		super(app);
 		this.activeFile = activeFile;
@@ -59,7 +59,7 @@ export class ImageBatchRenameModal extends Modal {
 					.setValue(this.state.namePattern)
 					.onChange(async (value) => {
 						this.state.namePattern = value;
-					})
+					}),
 			);
 		const npInputEl = namePatternSetting.controlEl
 			.children[0] as HTMLInputElement;
@@ -81,12 +81,12 @@ export class ImageBatchRenameModal extends Modal {
 		const extPatternSetting = new Setting(contentEl)
 			.setName("Extension pattern")
 			.setDesc(
-				"Please input the extension pattern to match files (regex)"
+				"Please input the extension pattern to match files (regex)",
 			)
 			.addText((text) =>
 				text.setValue(this.state.extPattern).onChange(async (value) => {
 					this.state.extPattern = value;
-				})
+				}),
 			);
 		const extInputEl = extPatternSetting.controlEl
 			.children[0] as HTMLInputElement;
@@ -100,14 +100,14 @@ export class ImageBatchRenameModal extends Modal {
 		const nameReplaceSetting = new Setting(contentEl)
 			.setName("Name replace")
 			.setDesc(
-				"Please input the string to replace the matched name (use $1, $2 for regex groups)"
+				"Please input the string to replace the matched name (use $1, $2 for regex groups)",
 			)
 			.addText((text) =>
 				text
 					.setValue(this.state.nameReplace)
 					.onChange(async (value) => {
 						this.state.nameReplace = value;
-					})
+					}),
 			);
 
 		const nrInputEl = nameReplaceSetting.controlEl
@@ -171,7 +171,7 @@ export class ImageBatchRenameModal extends Modal {
 							() => {
 								this.renameAll();
 								this.close();
-							}
+							},
 						).open();
 					});
 			})
@@ -207,7 +207,7 @@ export class ImageBatchRenameModal extends Modal {
 		fileCache.embeds.forEach((embed) => {
 			const file = this.app.metadataCache.getFirstLinkpathDest(
 				embed.link,
-				this.activeFile.path
+				this.activeFile.path,
 			);
 			if (!file) {
 				console.warn("file not found", embed.link);
@@ -289,7 +289,7 @@ class ConfirmModal extends Modal {
 		app: App,
 		title: string,
 		message: string,
-		onConfirm: () => void
+		onConfirm: () => void,
 	) {
 		super(app);
 		this.title = title;

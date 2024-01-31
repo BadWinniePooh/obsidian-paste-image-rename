@@ -21,7 +21,7 @@ interface ElementTree {
 
 export function createElementTree(
 	rootEl: HTMLElement,
-	opts: ElementTreeOptions
+	opts: ElementTreeOptions,
 ): ElementTree {
 	const result: ElementTree = {
 		el: rootEl.createEl(opts.tag, opts as DomElementInfo),
@@ -67,7 +67,7 @@ export const path = {
 	// return extension without dot, e.g. 'jpg'
 	extension(fullpath: string): string {
 		const positions = [...fullpath.matchAll(new RegExp("\\.", "gi"))].map(
-			(a) => a.index
+			(a) => a.index,
 		);
 		return fullpath.slice(positions[positions.length - 1] + 1);
 	},
@@ -98,7 +98,7 @@ interface CompositionState {
 }
 
 export function lockInputMethodComposition(
-	el: HTMLInputElement
+	el: HTMLInputElement,
 ): CompositionState {
 	const state: CompositionState = {
 		lock: false,
