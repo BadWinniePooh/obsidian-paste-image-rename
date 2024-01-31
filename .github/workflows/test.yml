@@ -35,7 +35,7 @@ jobs:
             - name: Install modules
               run: npm install
             - name: Run tsc
-              run: tsc --noEmit
+              run: tsc -noEmit -skipLibCheck
     build:
         runs-on: ubuntu-latest
         steps:

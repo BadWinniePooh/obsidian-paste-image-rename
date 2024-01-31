@@ -89,7 +89,10 @@ export default class PasteImageRenamePlugin extends Plugin {
 					this.startRenameProcess(file, this.settings.autoRename);
 				} else {
 					if (this.settings.handleAllAttachments) {
-						debugLog("handleAllAttachments for file", file.toString());
+						debugLog(
+							"handleAllAttachments for file",
+							file.toString(),
+						);
 						if (this.testExcludeExtension(file)) {
 							debugLog("excluded file by ext", file.toString());
 							return;
