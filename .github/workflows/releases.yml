@@ -23,7 +23,7 @@ jobs:
               id: build
               run: |
                   npm install
-                  npm run build --if-present
+                  npm run newbuild --if-present
                   mkdir ${{ env.PLUGIN_NAME }}
                   cp main.js styles.css manifest.json ${{ env.PLUGIN_NAME }}
                   zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
