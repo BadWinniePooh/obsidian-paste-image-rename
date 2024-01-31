@@ -85,13 +85,13 @@ export default class PasteImageRenamePlugin extends Plugin {
 				// always ignore markdown file creation
 				if (isMarkdownFile(file)) return;
 				if (isPastedImage(file)) {
-					debugLog("pasted image created", file);
+					debugLog("pasted image created", file.toString());
 					this.startRenameProcess(file, this.settings.autoRename);
 				} else {
 					if (this.settings.handleAllAttachments) {
-						debugLog("handleAllAttachments for file", file);
+						debugLog("handleAllAttachments for file", file.toString());
 						if (this.testExcludeExtension(file)) {
-							debugLog("excluded file by ext", file);
+							debugLog("excluded file by ext", file.toString());
 							return;
 						}
 						this.startRenameProcess(file, this.settings.autoRename);
@@ -148,7 +148,7 @@ export default class PasteImageRenamePlugin extends Plugin {
 			file,
 			activeFile,
 		);
-		debugLog("generated newName:", newName, isMeaningful);
+		debugLog("generated newName:", newName, isMeaningful.toString());
 
 		if (!isMeaningful || !autoRename) {
 			this.openRenameModal(
@@ -259,7 +259,7 @@ export default class PasteImageRenamePlugin extends Plugin {
 		);
 		this.modals.push(modal);
 		modal.open();
-		debugLog("modals count", this.modals.length);
+		debugLog("modals count", this.modals.length.toString());
 	}
 
 	openBatchRenameModal() {
@@ -302,7 +302,7 @@ export default class PasteImageRenamePlugin extends Plugin {
 				file,
 				activeFile,
 			);
-			debugLog("generated newName:", newName, isMeaningful);
+			debugLog("generated newName:", newName, isMeaningful.toString());
 			if (!isMeaningful) {
 				new Notice(
 					"Failed to batch rename images: the generated name is not meaningful",
@@ -321,7 +321,7 @@ export default class PasteImageRenamePlugin extends Plugin {
 		let frontmatter;
 		const fileCache = this.app.metadataCache.getFileCache(activeFile);
 		if (fileCache) {
-			debugLog("frontmatter", fileCache.frontmatter);
+			debugLog("frontmatter", fileCache.frontmatter.toString());
 			frontmatter = fileCache.frontmatter;
 			imageNameKey = frontmatter?.imageNameKey || "";
 			firstHeading = getFirstHeading(fileCache.headings);
@@ -359,7 +359,7 @@ export default class PasteImageRenamePlugin extends Plugin {
 		// list files in dir
 		const dir = file.parent.path;
 		const listed = await this.app.vault.adapter.list(dir);
-		debugLog("sibling files", listed);
+		debugLog("sibling files", listed.toString());
 
 		// parse newName
 		const newNameExt = path.extension(newName),
@@ -381,7 +381,7 @@ export default class PasteImageRenamePlugin extends Plugin {
 				`^(?<name>${newNameStemEscaped})${delimiterEscaped}(?<number>\\d+)\\.${newNameExt}$`,
 			);
 		}
-		debugLog("dupNameRegex", dupNameRegex);
+		debugLog("dupNameRegex", dupNameRegex.toString());
 
 		const dupNameNumbers: number[] = [];
 		let isNewNameExist = false;

@@ -189,7 +189,7 @@ export class ImageBatchRenameModal extends Modal {
 	}
 
 	async renameAll() {
-		debugLog("renameAll", this.state);
+		debugLog("renameAll", this.state.toString());
 		for (const task of this.state.renameTasks) {
 			await this.renameFunc(task.file, task.name);
 		}
@@ -275,7 +275,7 @@ export class ImageBatchRenameModal extends Modal {
 			});
 		});
 
-		debugLog("new renameTasks", renameTasks);
+		debugLog("new renameTasks", renameTasks.toString());
 		state.renameTasks = renameTasks;
 	}
 }

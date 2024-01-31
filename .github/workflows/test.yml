@@ -46,4 +46,4 @@ jobs:
             - name: Install modules
               run: npm install
             - name: Run build
-              run: npm run build
+              run: npm run newbuild
