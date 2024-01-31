@@ -25,7 +25,7 @@ jobs:
                   npm install
                   npm run newbuild --if-present
                   mkdir ${{ env.PLUGIN_NAME }}
-                  cp main.js styles.css manifest.json ${{ env.PLUGIN_NAME }}
+                  cp build/main.js build/styles.css manifest.json ${{ env.PLUGIN_NAME }}
                   zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
                   ls
             - name: Create Release
