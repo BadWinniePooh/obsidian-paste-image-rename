@@ -7,6 +7,9 @@ on:
 
 env:
     PLUGIN_NAME: obsidian-paste-image-rename
+    MAIN_JS: build/main.js
+    MANIFEST_JSON: manifest.json
+    STYLES_CSS: build/styles.css
 
 permissions:
   contents: write
@@ -25,7 +28,7 @@ jobs:
                   npm install
                   npm run newbuild --if-present
                   mkdir ${{ env.PLUGIN_NAME }}
-                  cp build/main.js build/styles.css manifest.json ${{ env.PLUGIN_NAME }}
+                  cp ${{ env.MAIN_JS }} ${{ env.STYLES_CSS }} ${{ env.MANIFEST_JSON }} ${{ env.PLUGIN_NAME }}
                   zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
                   ls
             - name: Create Release
@@ -54,7 +57,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ./main.js
+                  asset_path: ./${{ env.MAIN_JS }}
                   asset_name: main.js
                   asset_content_type: text/javascript
             - name: Upload manifest.json
@@ -64,7 +67,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ./manifest.json
+                  asset_path: ./${{ env.MANIFEST_JSON }}
                   asset_name: manifest.json
                   asset_content_type: application/json
             - name: Upload styles.css
@@ -74,6 +77,6 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ./styles.css
+                  asset_path: ./${{ env.STYLES_CSS }}
                   asset_name: styles.css
                   asset_content_type: text/css
